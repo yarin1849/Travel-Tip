@@ -263,9 +263,9 @@ function onSetSortBy() {
     loadAndRenderLocs()
 }
 
-function onSetFilterBy({ txt, minRate}) {
-    console.log({ txt, minRate})
-    const filterBy = locService.setFilterBy({ txt, minRate: +minRate})
+function onSetFilterBy({ txt, minRate }) {
+    console.log({ txt, minRate })
+    const filterBy = locService.setFilterBy({ txt, minRate: +minRate })
     utilService.updateQueryParams(filterBy)
     loadAndRenderLocs()
 }
@@ -273,6 +273,9 @@ function onSetFilterBy({ txt, minRate}) {
 function renderLocStats() {
     locService.getLocCountByRateMap().then(stats => {
         handleStats(stats, 'loc-stats-rate')
+    })
+    locService.getLocCountByDateMap().then(stats => {
+        handleStats(stats, 'loc-stats-date')
     })
 }
 
