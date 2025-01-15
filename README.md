@@ -9,6 +9,10 @@ TravelTip is an app that keeps a list of favorite locations
 - The app allows the user to keep and manage locations
 - The user can also search for an address and pan the map to that point
 - The User can pan the map to his own geo-location
+- The User can also change the theme color of the background
+- The User can calculate distances from his location to other locations
+- The User can sort the locations by adding dates
+
 
 ## Locations CRUDL 
 - Create – click on the map prompts for name and rate
@@ -78,7 +82,10 @@ window.app = {
     onCopyLoc,
     onShareLoc,
     onSetSortBy,
-    onSetFilterBy
+    onSetFilterBy,
+    onChangeTheme,
+    onOpenThemeModal,
+    onCloseModal
 }
 ```
 
