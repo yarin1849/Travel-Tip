@@ -69,6 +69,9 @@ function renderLocs(locs) {
 }
 
 function onRemoveLoc(locId) {
+    const isRemove = confirm(`are you sure you want to delete this location ${locId}?`)
+
+    if (!isRemove) return
     locService.remove(locId)
         .then(() => {
             flashMsg('Location removed')
@@ -221,7 +224,7 @@ function flashMsg(msg) {
 
 function getFilterByFromQueryParams() {
     const queryParams = new URLSearchParams(window.location.search)
-    console.log('queryParams', queryParams)
+    // console.log('queryParams', queryParams)
     const txt = queryParams.get('txt') || ''
     const minRate = queryParams.get('minRate') || 0
     locService.setFilterBy({ txt, minRate })
@@ -240,6 +243,7 @@ function onSetSortBy() {
     const prop = document.querySelector('.sort-by').value
     const isDesc = document.querySelector('.sort-desc').checked
 
+
     if (!prop) return
 
     const sortBy = {}
@@ -254,8 +258,9 @@ function onSetSortBy() {
     loadAndRenderLocs()
 }
 
-function onSetFilterBy({ txt, minRate }) {
-    const filterBy = locService.setFilterBy({ txt, minRate: +minRate })
+function onSetFilterBy({ txt, minRate}) {
+    console.log({ txt, minRate})
+    const filterBy = locService.setFilterBy({ txt, minRate: +minRate})
     utilService.updateQueryParams(filterBy)
     loadAndRenderLocs()
 }
