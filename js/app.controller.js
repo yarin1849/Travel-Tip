@@ -16,8 +16,12 @@ window.app = {
     onShareLoc,
     onSetSortBy,
     onSetFilterBy,
+    onChangeTheme,
+    onOpenThemeModal,
+    onCloseModal
 }
 
+let gKeepResolve
 let gUserPos
 
 function onInit() {
@@ -329,4 +333,28 @@ function cleanStats(stats) {
     return cleanedStats
 }
 
+function onChangeTheme() {
+    const color = document.querySelector('.change-theme').value
+    gKeepResolve(color)
+    document.querySelector('.modal').hidden = true
+}
 
+function askUser() {
+    document.querySelector('.modal').hidden = false
+    return new Promise(resolve => {
+        gKeepResolve = resolve
+    })
+}
+
+function onOpenThemeModal() {
+    askUser()
+        .then(color => {
+            document.querySelector('body').style.backgroundColor = color
+            document.querySelector('.locs-container').style.backgroundColor = color
+            document.querySelector('.loc-list li.active').style.backgroundColor = color
+        })
+}
+
+function onCloseModal() {
+    document.querySelector('.modal').hidden = true
+}

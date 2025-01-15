@@ -24,6 +24,7 @@
             <button type="button" title="My Position" onclick="app.onPanToUserPos()" class="btn-user-pos">&nbsp;
             </button>
         </form>
+        <button onclick="app.onOpenThemeModal()">Change Theme</button>
     </header>
     <main>
         <div class="map"></div>
@@ -73,6 +74,16 @@
             </section>
         </div>
     </main>
+
+    <div class="modal" hidden>
+        <p>Change theme</p>
+        <input type="color" class="change-theme" />
+        <div class="modal-actions">
+            <button onclick="app.onChangeTheme()">Ok</button>
+            <button onclick="app.onCloseModal()">Cancel</button>
+        </div>
+    </div>
+
     <pre class="debug" hidden></pre>
     <div class="user-msg"></div>
     <script type="module" src="js/app.controller.js"></script>
